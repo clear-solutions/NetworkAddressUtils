@@ -1,6 +1,6 @@
 # NetworkAddressUtils
 Overview
-NetAddrUtils is a Java library designed to simplify network programming tasks, specifically focusing on retrieving the IPv4 address of a machine's network interfaces. It provides a straightforward API for developers to obtain the machine's local IP address, which is crucial for various network-based applications, especially those involving intra-network communication.
+NetworkAddressUtils is a Java library designed to simplify network programming tasks, specifically focusing on retrieving the IPv4 address of a machine's network interfaces. It provides a straightforward API for developers to obtain the machine's local IP address, which is crucial for various network-based applications, especially those involving intra-network communication.
 
 The library abstracts the complexities of Java's native networking APIs, offering a user-friendly way to fetch IPv4 addresses without delving into the lower-level details of network interface enumeration and IP address filtering.
 

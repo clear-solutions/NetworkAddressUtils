@@ -6,11 +6,15 @@
 
     <groupId>ltd.clearsolutions.networkaddressutils</groupId>
     <artifactId>networkaddressutils</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
+    <version>1.0</version>
     <name>networkaddressutils</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
+    <description>
+        NetworkAddressUtils is a Java library designed to simplify network programming tasks, specifically focusing on
+        retrieving the IPv4 address of a machine's network interfaces. It provides a straightforward API for developers
+        to obtain the machine's local IP address, which is crucial for various network-based applications, especially
+        those involving intra-network communication.
+    </description>
+    <url>http://www.clear-solutions.ltd</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -55,6 +59,17 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.13</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.3.2</version>
                 </plugin>
@@ -94,4 +109,95 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <licenses>
+        <license>
+            <name>Mit</name>
+            <url>https://opensource.org/license/mit</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Maksym Danylenko</name>
+            <email>max.danylenko@clear-solutions.ltd</email>
+            <organization>The Clear Solutions</organization>
+            <organizationUrl>https://clear-solutions.lrd</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:clear-solutions/NetworkAddressUtils.git</connection>
+        <developerConnection>scm:git:ssh://github.com:clear-solutions/NetworkAddressUtils.git</developerConnection>
+        <url>https://github.com/clear-solutions/NetworkAddressUtils/tree/main</url>
+    </scm>
+
 </project>
