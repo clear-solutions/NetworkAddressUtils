@@ -6,7 +6,8 @@
 
     <groupId>ltd.clear-solutions</groupId>
     <artifactId>networkaddressutils</artifactId>
-    <version>1.0.0</version>
+    <!--<version>1.0.0</version>-->
+    <version>1.0.1-SNAPSHOT</version>
     <name>networkaddressutils</name>
     <description>
         NetworkAddressUtils is a Java library designed to simplify network programming tasks, specifically focusing on

@@ -10,7 +10,7 @@ If the repository was successfully closed, now you’re able to promote it to re
 
 ```shell
 
-mvn nexus-staging:release -DstagingRepositoryId=ltdclear-solutions-1002
+mvn nexus-staging:release -DstagingRepositoryId=ltdclear-solutions-1003
 ```
 
 # References:
