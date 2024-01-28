@@ -28,7 +28,7 @@ To use NetAddrUtils in your project, include the following in your project's bui
 <dependency>
     <groupId>ltd.clearsolutions.networkaddressutils</groupId>
     <artifactId>networkaddressutils</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
