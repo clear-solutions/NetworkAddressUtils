@@ -35,7 +35,7 @@ jobs:
       with:
         name: 'Maven Surefire Reports'
         path: '**/surefire-reports/TEST-*.xml'
-        reporter: 'github-check'
+        reporter: 'java-junit'
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
