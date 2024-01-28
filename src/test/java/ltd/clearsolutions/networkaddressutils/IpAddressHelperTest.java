@@ -19,6 +19,8 @@ import static org.mockito.Mockito.when;
 
 class IpAddressHelperTest {
 
+    IpAddressHelper helper = new IpAddressHelper();
+
     @Test
     void getMachineIpAddressInInternalNetwork_ethernetInterfaceWithValidIPv4_returnInternalIp() throws Exception {
         InetAddress inetAddress = Mockito.mock(Inet4Address.class);
@@ -33,7 +35,6 @@ class IpAddressHelperTest {
         try (MockedStatic<NetworkInterface> utilities = Mockito.mockStatic(NetworkInterface.class)) {
             utilities.when(NetworkInterface::getNetworkInterfaces).thenReturn(enumeration(singletonList(networkInterface)));
 
-            IpAddressHelper helper = new IpAddressHelper();
             String ipAddress = helper.getMachineIpAddressInInternalNetwork();
 
             assertEquals("192.168.1.100", ipAddress);
@@ -49,8 +50,6 @@ class IpAddressHelperTest {
         try (MockedStatic<NetworkInterface> utilities = Mockito.mockStatic(NetworkInterface.class)) {
             utilities.when(NetworkInterface::getNetworkInterfaces)
                      .thenReturn(enumeration(singletonList(networkInterface)));
-
-            IpAddressHelper helper = new IpAddressHelper();
 
             assertThatThrownBy(helper::getMachineIpAddressInInternalNetwork)
                 .isInstanceOf(NetworkInterfaceException.class)
@@ -68,8 +67,6 @@ class IpAddressHelperTest {
         try (MockedStatic<NetworkInterface> utilities = Mockito.mockStatic(NetworkInterface.class)) {
             utilities.when(NetworkInterface::getNetworkInterfaces)
                      .thenReturn(enumeration(singletonList(networkInterface)));
-
-            IpAddressHelper helper = new IpAddressHelper();
 
             assertThatThrownBy(helper::getMachineIpAddressInInternalNetwork)
                 .isInstanceOf(NetworkInterfaceException.class)
@@ -92,8 +89,6 @@ class IpAddressHelperTest {
             utilities.when(NetworkInterface::getNetworkInterfaces)
                      .thenReturn(enumeration(singletonList(networkInterface)));
 
-            IpAddressHelper helper = new IpAddressHelper();
-
             assertThatThrownBy(helper::getMachineIpAddressInInternalNetwork)
                 .isInstanceOf(NetworkInterfaceException.class)
                 .hasMessageContaining("Can not find the LAN IP address");
@@ -104,8 +99,6 @@ class IpAddressHelperTest {
     void testSocketExceptionHandling() {
         try (MockedStatic<NetworkInterface> utilities = Mockito.mockStatic(NetworkInterface.class)) {
             utilities.when(NetworkInterface::getNetworkInterfaces).thenThrow(SocketException.class);
-
-            IpAddressHelper helper = new IpAddressHelper();
 
             assertThatThrownBy(helper::getMachineIpAddressInInternalNetwork)
                 .isInstanceOf(NetworkInterfaceException.class)
