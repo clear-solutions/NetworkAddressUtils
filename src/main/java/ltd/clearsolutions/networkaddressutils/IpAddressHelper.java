@@ -17,9 +17,9 @@ public class IpAddressHelper {
      * and returns the IPv4 address of the first Ethernet interface found.
      *
      * @return The IPv4 address of the machine in the internal network.
-     * @throws RuntimeException if the LAN IP address cannot be found.
+     * @throws NetworkInterfaceException if the LAN IP address cannot be found.
      */
-    public String getMachineIpAddressInInternalNetwork() {
+    public String getMachineIpAddressInInternalNetwork() throws NetworkInterfaceException {
         try {
             //Enumerate all network interfaces and their addresses
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
@@ -45,8 +45,6 @@ public class IpAddressHelper {
                 while (addresses.hasMoreElements()) {
                     InetAddress addr = addresses.nextElement();
                     if (isIPv4Address(addr)) {
-                        //TODO add logs
-                        System.out.println(iface.getDisplayName() + " " + addr.getHostAddress());
                         return addr.getHostAddress();
                     }
                 }
